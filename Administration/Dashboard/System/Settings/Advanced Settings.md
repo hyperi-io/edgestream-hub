@@ -2,7 +2,7 @@
 
 The Advanced Settings page allows administrators to override default system configurations, customize internal package repositories, configure secure remote access, and fine-tune pipeline delivery throughput.
 
-![Advanced Settings](..\..\..\..\images\advanced_settings.png "Advanced Settings")
+![Advanced Settings](../../../../images/advanced_settings.png "Advanced Settings")
 
 **Web UI & Metrics**
 

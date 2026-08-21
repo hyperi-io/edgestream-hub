@@ -2,7 +2,7 @@
 
 The VPN Client interface allows administrators to configure, manage, and monitor secure outbound WireGuard and OpenVPN tunnels. These tunnels are primarily used to securely route forwarded telemetry and log events to remote destination sinks over encrypted networks.
 
-![VPN Client](..\..\..\images\vpn_client.png "VPN Client")
+![VPN Client](../../../images/vpn_client.png "VPN Client")
 
 **Connection Overview & Lifecycle Management**
 

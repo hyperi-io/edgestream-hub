@@ -2,7 +2,7 @@
 
 The Certificate Store provides centralized management for SSL/TLS assets, including Certificate Authorities (CAs), public certificates, and private keys. Stored certificates are exposed directly to pipeline sources and destinations to enable secure mTLS, encrypted syslog, and authenticated API egress.
 
-![Certificate Store](..\..\..\images\certificate_store.png "Certificate Store")
+![Certificate Store](../../../images/certificate_store.png "Certificate Store")
 
 **Supported File Types**
 

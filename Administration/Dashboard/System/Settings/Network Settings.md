@@ -2,7 +2,7 @@
 
 The Network Settings page allows administrators to configure core name resolution, time synchronization, and advanced routing or host configurations for the EdgeStream Hub appliance.
 
-![Network Settings](..\..\..\..\images\network_settings.png "Network Settings")
+![Network Settings](../../../../images/network_settings.png "Network Settings")
 
 **Core Network Services**
 

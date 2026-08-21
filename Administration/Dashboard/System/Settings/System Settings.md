@@ -2,7 +2,7 @@
 
 The System Settings page allows administrators to configure core identity and regional parameters for the EdgeStream Hub appliance.
 
-![System Settings](..\..\..\..\images\system_settings.png "System Settings")
+![System Settings](../../../../images/system_settings.png "System Settings")
 
 ## 🏷️ Global Event Metadata Enrichment
 

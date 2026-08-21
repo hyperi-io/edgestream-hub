@@ -2,7 +2,7 @@
 
 The Interface Settings page allows administrators to configure IPv4 network parameters for the appliance's **Management** and **Events** network interfaces.
 
-![Interface Settings](..\..\..\..\images\interface_settings.png "Interface Settings")
+![Interface Settings](../../../../images/interface_settings.png "Interface Settings")
 
 ## 🛠️ Management Interface
 

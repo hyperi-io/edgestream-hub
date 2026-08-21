@@ -93,7 +93,7 @@ We will upload the following 3 files:
 
 When completed, the keys will be listed in the Certificate Store:
 
-![Certificate Store](..\images\beats_scenario_certificate_store.png "Certificate Store")
+![Certificate Store](../images/beats_scenario_certificate_store.png "Certificate Store")
 
 #### Configuring Certificates in Beats Source
 
@@ -101,7 +101,7 @@ Go back into the Beats source, Configuration -> Sources and click edit next to b
 
 Under TLS set the following options:
 
-![Beats TLS Options](..\images\beats_scenario_beats_tls_options.png "Beats TLS Options")
+![Beats TLS Options](../images/beats_scenario_beats_tls_options.png "Beats TLS Options")
 
 Select **Update** to save settings.
 
@@ -153,7 +153,7 @@ Extract the files to a directory, in this example I am using C:\Winlogbeat.
 
 Create the directory C:\Winlogbeat\cert and copy the client certificates and the certificate authority certificate to this location.
 
-![File Manager](..\images\nxlog_scenario_beats_tls_windows_cert_dir.png "File Manager")
+![File Manager](../images/nxlog_scenario_beats_tls_windows_cert_dir.png "File Manager")
 
 Edit the Winlogbeat configuration file C:\Winlogbeat\winlogbeat.yml
 
@@ -202,8 +202,8 @@ You can view the statistics for the beats source in the Edgestream-Hub Event Flo
 
 Navigate to Monitoring -> Event flow:
 
-![Event Flow](..\images\beats_scenario_beats_event_monitor.png "Event Flow")
+![Event Flow](../images/beats_scenario_beats_event_monitor.png "Event Flow")
 
 You can also run the command **vector top** on the Edgestream-Hub to see the event flow on the command line, or **vector tap to see** the raw events:
 
-![Vector Tap](..\images\beats_scenario_beats_vector_top.png "Vector Tap")
+![Vector Tap](../images/beats_scenario_beats_vector_top.png "Vector Tap")

@@ -2,7 +2,7 @@
 
 The System Services page provides a centralized, real-time monitoring view of all core daemons powering the EdgeStream Hub appliance.
 
-![System Services](..\..\..\images\system_services.png "System Services")
+![System Services](../../../images/system_services.png "System Services")
 
 ## 🚦 Service States & Status Indicators
 

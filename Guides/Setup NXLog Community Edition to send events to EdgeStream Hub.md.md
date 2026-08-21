@@ -92,7 +92,7 @@ We will upload the following 3 files:
 
 When completed, the keys will be listed in the Certificate Store:
 
-![Certificate Store](..\images\nxlog_scenario_certificate_store.png "Certificate Store")
+![Certificate Store](../images/nxlog_scenario_certificate_store.png "Certificate Store")
 
 #### Configuring Certificates in NxLog Source
 
@@ -100,7 +100,7 @@ Go back into the NxLog source, Configuration -> Sources and click edit next to n
 
 Under TLS set the following options:
 
-![NxLog TLS Options](..\images\nxlog_scenario_nxlog_tls_options_1.png "NxLog TLS Options")
+![NxLog TLS Options](../images/nxlog_scenario_nxlog_tls_options_1.png "NxLog TLS Options")
 
 Select **Update** to save settings.
 
@@ -151,7 +151,7 @@ I am using C:\Program Files\nxlog as the installation location, adjust according
 
 Copy the client certificates and the certificate authority certificate to the C:\Program Files\nxlog\cert directory.
 
-![File Manager](..\images\nxlog_scenario_nxlog_tls_windows_cert_dir.png "File Manager")
+![File Manager](../images/nxlog_scenario_nxlog_tls_windows_cert_dir.png "File Manager")
 
 Edit the NxLog configuration file C:\Program Files\nxlog\conf\nxlog.conf
 
@@ -213,10 +213,10 @@ You can view the statistics for the nxlog source in the Edgestream-Hub Event Flo
 
 Navigate to Monitoring -> Event flow:
 
-![Event Flow](..\images\nxlog_scenario_nxlog_event_monitor.png "Event Flow")
+![Event Flow](../images/nxlog_scenario_nxlog_event_monitor.png "Event Flow")
 
 You can also run the command **vector top** on the Edgestream-Hub to see the event flow on the command line, or **vector tap to see** the raw events:
 
-![Vector Tap](..\images\nxlog_scenario_nxlog_vector_top.png "Vector Tap")
+![Vector Tap](../images/nxlog_scenario_nxlog_vector_top.png "Vector Tap")
 
 

@@ -2,7 +2,7 @@
 
 The Log Files viewer provides an interactive console to inspect system, authentication, and service-level logs in real time directly from the EdgeStream Hub Web UI.
 
-![Log Viewer](..\..\..\images\Logfiles.png "Log Viewer")
+![Log Viewer](../../../images/Logfiles.png "Log Viewer")
 
 ## 🧭 Viewer Controls
 
