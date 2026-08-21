@@ -8,7 +8,7 @@ Under certificate authorities, select +Create...
 
 Fill in appropriate values for the criteria and select Create:
 
-![Tinycert CA](..\images\tinycert_ca.png "Tinycert CA")
+![Tinycert CA](../images/tinycert_ca.png "Tinycert CA")
 
 Select the newly created certificate authority so it is visible.
 
@@ -20,7 +20,7 @@ Under Requests/Certificates select +Create...
 
 Fill in appropriate values for the criteria and select Create:
 
-![Tinycert Certificate](..\images\tinycert_cert.png "Tinycert Certificate")
+![Tinycert Certificate](../images/tinycert_cert.png "Tinycert Certificate")
 
 Download the certificate and private key. Select Download, and then download the Certificate and Private key (clear).
 
