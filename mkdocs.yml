@@ -1,6 +1,6 @@
-site_name: EdgeStream User & Operator Docs
+site_name: EdgeStream Hub User & Operator Docs
 site_description: User-focused guide plus reference extracted from source
-site_url: https://YOUR_NAMESPACE.gitlab.io/YOUR_REPO/
+site_url: https://github.com/hyperi-io/edgestream-hub
 
 theme:
   name: material
