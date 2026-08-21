@@ -2,7 +2,7 @@
 
 The Users page allows administrators to manage Web UI access, configure account profiles, enforce password policies, and manage Multi-Factor Authentication (MFA).
 
-![User Management](../../../images\users.png "User Management")
+![User Management](../../../images/users.png "User Management")
 
 **User Management & Safety Rules**
 
