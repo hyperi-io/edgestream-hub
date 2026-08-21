@@ -2,7 +2,7 @@
 
 The Event Flow Monitor provides real-time visibility into telemetry throughput, pipeline performance, and error states across configured sources, transforms, and destinations.
 
-![Event flow](..\..\images\event_flow_1.png "Event flow")
+![Event flow](..\..\..\images\event_flow_1.png "Event flow")
 
 ## 🧭 Overview & Controls
 

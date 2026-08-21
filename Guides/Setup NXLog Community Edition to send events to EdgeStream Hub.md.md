@@ -1,9 +1,3 @@
----
-description: >-
-  Guide on how to configure NxLog to send windows events to the Edgestream Hub
-  over TLS connections.
----
-
 # Setup NxLog to send events to Edgestream Hub
 
 ## Edgestream Hub Configuration
@@ -27,15 +21,10 @@ The following commands will generate a certificate authority and self-signed cer
 #### Create Certificate Authority
 
 Generate a private key file:
-
 ```
  openssl genrsa -out ca.key 4096
 ```
-
-
-
 Generate a request and sign the key created in the previous step, provide values suitable for your environment:
-
 ```
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.pem
 You are about to be asked to enter information that will be incorporated
@@ -57,13 +46,10 @@ Email Address []:support@hypersec.io
 #### Create Edgestream-Hub NxLog Server Certificate
 
 Run the following command to generate a certificate for your Edgestream-Hub NxLog receiver:
-
 ```
  openssl genrsa -out edgestream-hub-nxlog.key 4096
 ```
-
-Generate a request:
-
+##### Generate a request:
 ```
 openssl req -new -key edgestream-hub-nxlog.key -out edgestream-hub-nxlog.csr
 You are about to be asked to enter information that will be incorporated
@@ -86,22 +72,18 @@ to be sent with your certificate request
 A challenge password []:
 An optional company name []:
 ```
-
 In this example I did not provide a password which is optional.
 
 Now we will sign the key using our certificate authority created above:
-
 ```
 
  openssl x509 -req -in edgestream-hub-nxlog.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out edgestream-hub-nxlog.crt -days 500 -sha256
 ```
-
-Upload the Certificates
+##### Upload the Certificates
 
 In the Web UI navigate to System -> Certificate Store and select Upload new file.
 
 We will upload the following 3 files:
-
 | File                     | Type                  |
 | ------------------------ | --------------------- |
 | ca.pem                   | Certificate Authority |
@@ -110,7 +92,7 @@ We will upload the following 3 files:
 
 When completed, the keys will be listed in the Certificate Store:
 
-<figure><img src="../.gitbook/assets/nxlog_scenario_certificate_store.png" alt=""><figcaption></figcaption></figure>
+![Certificate Store](..\images\nxlog_scenario_certificate_store.png "Certificate Store")
 
 #### Configuring Certificates in NxLog Source
 
@@ -118,7 +100,7 @@ Go back into the NxLog source, Configuration -> Sources and click edit next to n
 
 Under TLS set the following options:
 
-<figure><img src="../.gitbook/assets/nxlog_scenario_nxlog_tls_options (1).png" alt=""><figcaption></figcaption></figure>
+![NxLog TLS Options](..\images\nxlog_scenario_nxlog_tls_options_1.png "NxLog TLS Options")
 
 Select **Update** to save settings.
 
@@ -127,13 +109,10 @@ Note: In production Verify Hostname should be True.
 #### Create Windows NxLog Client Certificates
 
 Execute the following command to create client certificates for the windows hosts:
-
 ```
  openssl genrsa -out client-nxlog.key 4096
 ```
-
 Generate a client request certificate:
-
 ```
 openssl req -new -key client-nxlog.key -out client-nxlog.csr
 You are about to be asked to enter information that will be incorporated
@@ -156,13 +135,11 @@ to be sent with your certificate request
 A challenge password []:
 An optional company name []:
 ```
-
 Again in this scenario I haven't used a challenge password as it is optional.
 
 Sign the client certificate using the certificate authority generated above:
 
-<pre><code><strong>openssl x509 -req -in client-nxlog.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out client-nxlog.crt -days 500 -sha256
-</strong></code></pre>
+```openssl x509 -req -in client-nxlog.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out client-nxlog.crt -days 500 -sha256```
 
 ### Installing NxLog
 
@@ -174,12 +151,11 @@ I am using C:\Program Files\nxlog as the installation location, adjust according
 
 Copy the client certificates and the certificate authority certificate to the C:\Program Files\nxlog\cert directory.
 
-<figure><img src="../.gitbook/assets/nxlog_scenario_nxlog_tls_windows_cert_dir.png" alt=""><figcaption></figcaption></figure>
+![File Manager](..\images\nxlog_scenario_nxlog_tls_windows_cert_dir.png "File Manager")
 
 Edit the NxLog configuration file C:\Program Files\nxlog\conf\nxlog.conf
 
 An example config that sends all events to the Edgestream-Hub running on IP Address 192.168.22.100:
-
 ```
 Panic Soft
 #NoFreeOnExit TRUE
@@ -227,7 +203,6 @@ SpoolDir  %ROOT%\data
 
 
 ```
-
 In this example I'm allowing untrusted, do not use this in production unless you are aware of the security implications.
 
 You can then restart the nxlog service and events will start flowing, check the nxlog log file if nothing is coming through.
@@ -238,9 +213,10 @@ You can view the statistics for the nxlog source in the Edgestream-Hub Event Flo
 
 Navigate to Monitoring -> Event flow:
 
-<figure><img src="../.gitbook/assets/nxlog_scenario_nxlog_event_monitor.png" alt=""><figcaption></figcaption></figure>
+![Event Flow](..\images\nxlog_scenario_nxlog_event_monitor.png "Event Flow")
 
 You can also run the command **vector top** on the Edgestream-Hub to see the event flow on the command line, or **vector tap to see** the raw events:
 
-<figure><img src="../.gitbook/assets/nxlog_scenario_nxlog_vector_top.png" alt=""><figcaption></figcaption></figure>
+![Vector Tap](..\images\nxlog_scenario_nxlog_vector_top.png "Vector Tap")
+
 

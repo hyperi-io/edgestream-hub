@@ -8,9 +8,7 @@ https://<edgestream-hub.local>
 
 Log in using the initially provided credentials from /root/edgestream_credentials.
 
-Navigate to the User management tab System -> Users and create a new admin user:
-
-<image create user>
+Navigate to the User management tab System -> Users and create a new admin user.
 
 Log out of the Edgestream Hub and log in using the new user and credentials. Navigate to System -> Users and delete the default administration account admin@edgestream.local.
 

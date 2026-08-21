@@ -2,7 +2,7 @@
 
 The Overview Dashboard provides a real-time snapshot of the current operational state of the EdgeStream Hub.
 
-![Edgestream Hub Dashboard](../images/overview_dashboard.png "Edgestream Hub Dashboard")
+![Edgestream Hub Dashboard](../../images/overview_dashboard.png "Edgestream Hub Dashboard")
 
 ---
 
