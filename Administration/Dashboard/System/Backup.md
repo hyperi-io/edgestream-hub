@@ -2,7 +2,7 @@
 
 The Backup & Restore page allows administrators to manually export and restore EdgeStream Hub configuration files, as well as configure automated, scheduled backups to local disk or cloud object storage.
 
-![Backup Restore](../../../images\backup_restore.png "Backup Restore")
+![Backup Restore](../../../images/backup_restore.png "Backup Restore")
 
 **Manual Export & Restore**
 
