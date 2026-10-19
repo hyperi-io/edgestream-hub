@@ -83,21 +83,21 @@ If administrative dashboard access or an authenticator device is lost, access ca
 Run the command without arguments to enumerate all existing Web UI users:
 
     ```bash
-    sudo /opt/edgestream-api/bin/reset_admin
+    sudo /usr/sbin/edgestream-users
     ```
 
 2. Reset an Account Password
 To override an account password:
 
     ```bash
-    sudo /opt/edgestream-api/bin/reset_admin <username> '<new_password>'
+    sudo /usr/sbin/edgestream-users <username> '<new_password>'
     ```
 
 3. Clear Multi-Factor Authentication
 If an administrator is locked out due to a lost TOTP device, remove MFA enforcement while leaving the underlying password intact:
 
     ```bash
-    sudo /opt/edgestream-api/bin/reset_admin --remove-mfa <username>
+    sudo /usr/sbin/edgestream-users --remove-mfa <username>
     ```
 
 Once executed, the operator can sign in using their standard credentials and re-enroll their TOTP device under System → Users.
