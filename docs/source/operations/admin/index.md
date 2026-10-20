@@ -7,4 +7,5 @@
 auth/webui_auth
 sources/sources
 sources/syslog_sources
+transforms/filters
 ```
