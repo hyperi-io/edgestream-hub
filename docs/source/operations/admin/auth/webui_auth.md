@@ -3,101 +3,132 @@
 Web interface credentials authenticate operators to the EdgeStream Hub management dashboard.
 
 ```{note}
-Web UI user accounts are strictly decoupled from host-level operating system authentication. A dashboard account does **not** grant SSH or local console shell privileges.
+Web dashboard accounts are separate from host-level server accounts. Holding a dashboard account does **not** grant SSH access, local terminal privileges, or root permissions.
+
 ```
 
-## Initial Bootstrap Access
-During initial appliance provisioning, the installer generates a unique administrative access credential and saves it to the root filesystem:
+---
+
+## First-Time Login (Default Admin Account)
+
+When the appliance is first installed, a default administrative username and temporary setup password are created and stored on the server filesystem.
+
+### 1. View the Temporary Password
+
+Log in to the server via SSH and read the credentials file:
 
 ```bash
-/root/edgestream_credentials
+sudo cat /root/edgestream_credentials
+
 ```
-To complete first-time sign-in:
 
-1. Retrieve the bootstrap credentials from the host shell via SSH:
+### 2. Sign In to the Dashboard
 
-    ```bash
-    sudo cat /root/edgestream_credentials
-    ```
+1. Open a web browser and go to `https://<your-appliance-ip-or-hostname>`.
+2. Enter the default username: `edgestream@local.com`.
+3. Paste the password from the credentials file.
 
-2. Navigate to https://<appliance-ip-or-fqdn> in your web browser.
+---
 
-3. Sign in using the default username (edgestream@local.com) and the generated access secret.
+## Setup Recommendation: Create Your Personal Admin Account
 
-## Onboarding & Account Hardening
-For security hygiene, transition away from the bootstrap account immediately after initial deployment:
+To keep the system secure, avoid using the shared default account for routine tasks. Set up your personal administrator profile during initial configuration:
 
-1. Navigate to System → Users in the dashboard.
+1. In the left navigation menu, go to **System → Users**.
+2. Click **Create User**.
+3. Fill in your name, email, and password, select the **Administrator** role, and save.
+4. Log out of the dashboard.
+5. Log back in using your new credentials.
+6. Go back to **System → Users**, select the original `edgestream@local.com` account, and click **Disable** or **Delete**.
 
-2. Select Create User and provision a dedicated administrative account for your operator or team identity.
+```{important}
+**Self-Deletion Safeguard:** The dashboard does not allow you to delete or disable the account you are currently logged into.
 
-3. Log out of the management dashboard.
+```
 
-4. Log back in using the newly created administrator credentials.
+---
 
-5. Return to System → Users, select the bootstrap account (edgestream@local.com), and either Disable or Delete it.
+## Managing User Accounts
 
-    ```{note}
-    The management interface prevents self-deletion. You cannot delete or disable the account currently authenticated to the active dashboard session.
-    ```
+User administration is handled under **System → Users**.
 
-#Managing User Accounts
-User lifecycles are administered under System → Users.
+* **Adding Users:** Click **Create User**, complete the fields, and select their access level.
+* **Disabling an Account:** If an operator leaves or no longer needs access, select their account and switch **Enabled** off. This blocks them from logging in immediately without deleting their audit history.
+* **Deleting an Account:** Click **Delete** next to an account to remove it permanently.
 
-### Administrative Provisioning
-Administrators can directly add, update, suspend, or remove users:
+### Allowing User Self-Registration
 
-- Status Toggling: Deactivate active sessions immediately by toggling an account to Disabled without removing historical records.
+If you want new users to request their own accounts:
 
-- Deletion: Permanently removes the operator identity and revokes all active session tokens.
+1. Go to **System → Settings → Advanced Settings**.
+2. Find `account_self_registration` and set it to **enabled** (or **disabled** to close registration).
 
-### Self-Registration Workflow
-Self-registration can be toggled to accommodate enterprise onboarding workflows:
+```{note}
+Self-registration does **not** grant instant access. Newly registered accounts enter a **Pending** status. An administrator must open **System → Users**, approve the request, and assign a role before the user can sign in.
 
-- Navigate to System → Settings → Advanced Settings.
+```
 
-- Locate the account_self_registration parameter and set it to enabled or disabled.
+---
 
-    ```{note}
-    Enabling self-registration permits prospective users to register an identity, but **does not grant immediate dashboard access**. All self-registered accounts are created in a pending state and require explicit review and activation by an existing administrator under **System → Users**.
-    ```
+## Two-Factor Authentication (MFA / Authenticator App)
 
-## Multi-Factor Authentication (MFA / TOTP)
-EdgeStream Hub supports RFC 6238 Time-based One-Time Passwords (TOTP) compatible with authenticator applications such as Google Authenticator, 1Password, or Authy.
+EdgeStream Hub works with standard mobile authenticator apps, such as Google Authenticator, Microsoft Authenticator, 1Password, or Authy.
 
-### Enabling TOTP
-1. Navigate to System → Users and select the account to secure.
+### Enabling MFA for an Account
 
-2. Open the MFA tab.
+1. Go to **System → Users** and click the user account you want to protect.
+2. Open the **MFA** tab.
+3. Open the authenticator app on your smartphone and scan the QR code shown on the screen.
+4. Type the 6-digit rolling code generated by your app into the verification box.
+5. Click **Verify & Enable**.
 
-3. Scan the displayed QR code with your authenticator mobile app or password manager.
+Future sign-ins for this account will require both the password and the current 6-digit code from the mobile app.
 
-4. Enter the active 6-digit rolling verification code into the prompt.
+---
 
-5. The appliance validates the rolling token against its internal clock and enforces MFA for all subsequent login challenges upon successful verification.
+## Emergency Access & Password Reset (CLI Tool)
 
-## Emergency Recovery (CLI Break-Glass)
-If administrative dashboard access or an authenticator device is lost, access can be recovered from the host terminal via the administrative recovery utility.
+If an administrator forgets their password or loses their phone with the authenticator app, an operator with SSH server access can resolve lockouts using the `edgestream-users` command-line utility.
 
-1. List Managed Dashboard Accounts
-Run the command without arguments to enumerate all existing Web UI users:
+### 1. View All Registered Users
 
-    ```bash
-    sudo /usr/sbin/edgestream-users
-    ```
+Run the command without options to view all accounts and their statuses:
 
-2. Reset an Account Password
-To override an account password:
+```bash
+sudo /usr/sbin/edgestream-users
 
-    ```bash
-    sudo /usr/sbin/edgestream-users <username> '<new_password>'
-    ```
+```
 
-3. Clear Multi-Factor Authentication
-If an administrator is locked out due to a lost TOTP device, remove MFA enforcement while leaving the underlying password intact:
+### 2. Reset an Account Password
 
-    ```bash
-    sudo /usr/sbin/edgestream-users --remove-mfa <username>
-    ```
+To assign a new password to an existing account:
 
-Once executed, the operator can sign in using their standard credentials and re-enroll their TOTP device under System → Users.
+```bash
+sudo /usr/sbin/edgestream-users <username> '<new_password>'
+
+```
+
+*Example:*
+
+```bash
+sudo /usr/sbin/edgestream-users admin@example.com 'NewSecurePass123!'
+
+```
+
+### 3. Remove a Lost MFA Requirement
+
+If an administrator cannot generate a 6-digit code due to a lost or replaced phone, disable MFA for their username without changing their password:
+
+```bash
+sudo /usr/sbin/edgestream-users --remove-mfa <username>
+
+```
+
+*Example:*
+
+```bash
+sudo /usr/sbin/edgestream-users --remove-mfa admin@example.com
+
+```
+
+Once executed, the command displays a confirmation message. The user can log in using their normal password and re-link their authenticator app under **System → Users**.
