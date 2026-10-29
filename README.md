@@ -131,4 +131,4 @@ SPDX Identifier: `FSL-1.1-ALv2`
 
 ---
 
-© 2026 EdgeStream Hub. All rights reserved.
+© 2026 Hyperi. All rights reserved.
