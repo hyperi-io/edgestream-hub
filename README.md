@@ -2,7 +2,7 @@
 
 **EdgeStream Hub** is an **event collection and aggregation appliance** designed for system administrators and platform operators who require reliable, flexible telemetry and observability pipelines.
 
-![Edgestream Hub Dashboard](./blob/main/docs/source/images/overview_dashboard.png "Edgestream Hub Dashboard")
+![Edgestream Hub Dashboard](./docs/source/images/overview_dashboard.png "Edgestream Hub Dashboard")
 
 It supports multiple input sources, real-time event filtering, and delivery to a wide range of destinations — all configurable through its built-in **web interface**.
 
