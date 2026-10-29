@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EdgeStream Hub — Enterprise Telemetry Pipeline Appliance</title>
+  <meta name="description" content="Turn-key telemetry processing appliance for collecting, filtering, and routing high-volume logs, metrics, and security events.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --accent: #10b981;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
+    header {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 2rem;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .hero-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      margin-bottom: 4rem;
+    }
+
+    /* Diagram */
+    .diagram-box {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      overflow-x: auto;
+      margin-bottom: 4rem;
+      line-height: 1.4;
+    }
+
+    /* Grid Sections */
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    th {
+      background: rgba(15, 23, 42, 0.6);
+      font-weight: 600;
+    }
+    td:first-child { font-weight: 600; color: var(--primary); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header class="container">
+    <span class="badge">Debian-Powered Appliance</span>
+    <h1>EdgeStream Hub</h1>
+    <p class="lead">Collect, filter, and route telemetry at the edge. Turn-key observability and event processing without the configuration headaches.</p>
+    
+    <div class="actions">
+      <a href="./docs/start/index.html" class="btn btn-primary">Quickstart Guide</a>
+      <a href="./docs/index.html" class="btn btn-secondary">Documentation</a>
+      <a href="https://github.com/your-org/edgestream-hub/releases" class="btn btn-secondary">Releases</a>
+    </div>
+
+    <img src="images/overview_dashboard.png" alt="EdgeStream Hub Dashboard" class="hero-img">
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Telemetry Pipeline at the Edge</h2>
+    <div class="diagram-box">
+[ Ingestion Sources ]               [ EdgeStream Hub ]                  [ Destination Sinks ]
+  Syslog (UDP/TCP/TLS) ───┐                                      ┌──► Apache Kafka (Topics)
+  NetFlow / CEF / Sockets ┼──► [ Push / Pull ]                   ├──► ClickHouse (Analytics)
+  Cloud (M365, AWS S3/SQS)┼──► [ Normalization ]                 ├──► AWS S3 / MinIO (Cold Store)
+  OTLP / Beats / Fluent   ───► [ Drop/Keep/VRL ] ────────────────┼──► Vector / Relay Hubs
+                                                                 └──► HTTP APIs / SIEM Endpoints
+    </div>
+
+    <h2 class="section-title">Core Capabilities</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📥 Multi-Protocol Ingestion</h3>
+        <p>19 built-in source connectors across Syslog (UDP/TCP/TLS), Cisco NetFlow/IPFIX, CEF, OpenTelemetry (OTLP), Elastic Beats, Office 365 Audit feeds, AWS SQS, and S3.</p>
+      </div>
+      <div class="card">
+        <h3>🎛️ Real-Time Filtering & VRL</h3>
+        <p>Filter in or out events using a visual boolean Query Builder, or apply high-throughput Vector Remap Language (VRL) for payload parsing, CIDR subnet matching, and log-to-metric conversions.</p>
+      </div>
+      <div class="card">
+        <h3>📤 Multi-Destination Fanout</h3>
+        <p>Deliver data simultaneously to real-time analytics (ClickHouse, Kafka, SIEM) and cold compliance storage (AWS S3, MinIO) with automatic failover and default sinks.</p>
+      </div>
+      <div class="card">
+        <h3>🖥️ Integrated Web UI</h3>
+        <p>Complete browser-based configuration management, live event and metric inspection, TOTP/MFA security, and seamless configuration reloads without packet loss.</p>
+      </div>
+      <div class="card">
+        <h3>🔒 Resilient Delivery</h3>
+        <p>Built-in in-memory buffers and persistent disk queuing protect against upstream network outages and absorb heavy traffic bursts.</p>
+      </div>
+      <div class="card">
+        <h3>🌍 Distributed Collection</h3>
+        <p>Native site-to-site and client VPN integration for aggregating telemetry securely across air-gapped environments, branch offices, and hybrid cloud estates.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Supported Destination Sinks</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>Protocol / Transport</th>
+          <th>Primary Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Apache Kafka</td>
+          <td>Native Producer</td>
+          <td>High-throughput pub/sub and enterprise streaming platforms</td>
+        </tr>
+        <tr>
+          <td>ClickHouse</td>
+          <td>Native HTTP / TCP</td>
+          <td>Real-time analytical log search and high-compression storage</td>
+        </tr>
+        <tr>
+          <td>AWS S3 / Compatible</td>
+          <td>Batched Object Upload</td>
+          <td>Low-cost cold archiving, compliance, and MinIO storage</td>
+        </tr>
+        <tr>
+          <td>HTTP / Webhook</td>
+          <td>JSON / Batched POST</td>
+          <td>Direct delivery to SIEMs (Splunk, Elastic) and webhooks</td>
+        </tr>
+        <tr>
+          <td>Vector</td>
+          <td>Native Streaming Protocol</td>
+          <td>Forwarding to upstream aggregation hubs or core collectors</td>
+        </tr>
+        <tr>
+          <td>Local / Network File</td>
+          <td>JSON / Flat File</td>
+          <td>Direct disk logging and network-attached storage (NFS/CIFS)</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>EdgeStream Hub is licensed under the <a href="./docs/COMMERCIAL.html">Functional Source License (FSL-1.1-ALv2)</a>.</p>
+      <p style="margin-top: 0.5rem;">&copy; 2026 EdgeStream Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

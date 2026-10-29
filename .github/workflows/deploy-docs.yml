@@ -8,6 +8,7 @@ on:
       - 'docs/**'
       - 'requirements-docs.txt'
       - '.github/workflows/deploy-docs.yml'
+      - 'static-site/**' # Track changes to your landing page assets
   workflow_dispatch:
 
 permissions:
@@ -42,10 +43,29 @@ jobs:
         run: |
           sphinx-build -b html docs/source docs/build/html
 
+      - name: Assemble Site Layout
+        run: |
+          # 1. Create a staging directory for the GitHub Pages deployment
+          mkdir -p dist/docs
+
+          # 2. Move built Sphinx documentation to /docs
+          cp -r docs/build/html/* dist/docs/
+
+          # 3. Copy root landing page and assets to root
+          # (Assumes your landing page files live in static-site/ or repo root)
+          cp static-site/index.html dist/index.html
+          if [ -d "static-site/images" ]; then
+            cp -r static-site/images dist/
+          fi
+
+          # 4. Prevent Jekyll from ignoring files starting with underscores (critical for Sphinx _static)
+          touch dist/.nojekyll
+          touch dist/docs/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs/build/html'
+          path: 'dist'
 
   deploy:
     environment:
